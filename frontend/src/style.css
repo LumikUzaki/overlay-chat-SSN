@@ -1,0 +1,345 @@
+/* 🌈 Variáveis de cor e estilo */
+:root {
+  --accent-color: #b388ff;
+  --secondary-accent: #69f0ae;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --donation-color: #ffd700;
+  --header-bg: rgba(26, 26, 62, 0.4);
+  --config-bg: rgba(26, 26, 62, 0.95);
+  --loading-bg: rgba(174, 181, 182, 0.9);
+}
+
+
+/* 🔄 Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* 🧭 Header */
+.header {
+  background: var(--header-bg);
+  backdrop-filter: blur(15px);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 100;
+  
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+ 
+
+}
+#app:hover .header,
+.header:hover,
+.config-panel.open ~ .header {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Mostrar quando hover no app ou no próprio header */
+
+
+/* Garantir que o header fique visível quando o painel de configuração estiver aberto */
+.config-panel.open ~ .header {
+  opacity: 1;
+  transform: translateY(0);
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.close-btn {
+    color: #ff5555;
+}
+
+.close-btn:hover {
+    background-color: rgba(255, 85, 85, 0.2);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.logo::before {
+  content: "🎮";
+  font-size: 20px;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff4757;
+  transition: background 0.3s ease;
+  
+}
+
+.status-indicator.connected {
+  background: #2ed573;
+  animation: none;
+}
+.status-text {
+    color: #666; /* Cor padrão quando desconectado */
+    transition: color 0.3s ease;
+}
+
+.status-text.connected {
+    color: #4CAF50; /* Verde quando conectado */
+}
+
+.status-text.disconnected {
+    color: #F44336; /* Vermelho quando desconectado */
+}
+/* 🎛️ Botões de controle */
+.header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+  min-width: 80px;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.control-btn.active {
+  background: rgba(46, 213, 115, 0.3);
+}
+
+/* 💬 Área do chat */
+.chat-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  
+}
+
+.chat-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+/* ⏳ Tela de carregamento */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--loading-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--secondary-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ⚙️ Painel de configuração */
+.config-panel {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  background: var(--config-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateX(120%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.config-panel.open {
+  transform: translateX(0);
+}
+
+.config-section {
+  margin-bottom: 20px;
+}
+
+.config-section h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--secondary-accent);
+}
+
+.config-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: white;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.config-input:focus {
+  outline: none;
+  border-color: var(--secondary-accent);
+}
+
+/* 🍞 Toast de feedback */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  color: black;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* 🎞️ Animações */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* 📱 Responsividade */
+@media (max-width: 600px) {
+  .config-panel {
+    width: 90%;
+    right: 5%;
+    top: 70px;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .control-btn {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+/* Classe para modo transparente 
+.transparent .header,
+.transparent .config-panel,
+.transparent .loading-overlay {
+  background: rgba(26, 26, 62, 0.7);
+}
+
+.transparent .control-btn {
+  background: rgba(255, 255, 255, 0.05);
+}*/
+
+.transparent {
+    background-color: rgba(26, 26, 62, 0.7);
+}
+.transparent .header {
+    background: rgba(26, 26, 62, 0.7);
+}
+
+
+
+#sound-controls {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background: #f4f4f4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+#sound-controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #333;
+}
+
+#beep-toggle {
+  accent-color: #0078D4; /* cor azul do Microsoft */
+  cursor: pointer;
+}
+
+#beep-volume {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 60px;
+  text-align: center;
+  font-size: 13px;
+}

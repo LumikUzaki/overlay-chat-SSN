@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a0a33">
+  <title>StreamChat Overlay</title>
+  <link rel="stylesheet" href="src/style.css">
+  <style>
+    /* Estilos críticos iniciais para garantir transparência imediata */
+    html, body, #app {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      overflow: hidden;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Barra superior com controles -->
+    <header class="header" id="header">
+      <div class="header-left">
+        <div class="logo">StreamChat Overlay</div>
+        <div class="status-indicator" id="statusIndicator" aria-hidden="true"></div>
+        <span class="status-text" id="statusText">Desconectado</span>
+                <button class="control-btn close-btn" id="closeBtn" title="Fechar" aria-label="Fechar">
+          <span class="btn-icon">✕</span>
+        </button>
+      </div>
+      
+      <div class="header-right">
+        <button class="control-btn" id="pinBtn" title="Fixar janela" aria-label="Fixar janela">
+          <span class="btn-icon">📌</span>
+          <span class="btn-text">Fixar</span>
+        </button>
+        
+        <button class="control-btn" id="transparentBtn" title="Alternar transparência" aria-label="Alternar transparência">
+          <span class="btn-icon">👁️</span>
+          <span class="btn-text">Transparente</span>
+        </button>
+        
+        <button class="control-btn config-btn" id="configBtn" title="Configurações" aria-label="Abrir configurações">
+          <span class="btn-icon">⚙️</span>
+        </button>
+        
+
+        
+
+      </div>
+    </header>
+
+    <!-- Área principal do chat -->
+    <main class="chat-container">
+      <iframe class="chat-iframe" id="chatFrame" src="about:blank" title="Chat ao vivo" allow="autoplay; fullscreen"></iframe>
+      
+      <!-- Overlay de carregamento -->
+      <div class="loading-overlay hidden" id="loadingOverlay" role="status" aria-live="polite">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <p class="loading-message">Conectando ao Social Stream Ninja...</p>
+        <p class="loading-status" id="loadingStatus">Aguardando configuração</p>
+      </div>
+    </main>
+
+    <!-- Painel de configurações -->
+    <aside class="config-panel" id="configPanel" aria-hidden="true" aria-labelledby="configPanelTitle">
+      <div class="config-section">
+        <h3 id="configPanelTitle" class="config-title">🔗 Conexão</h3>
+        <div class="input-group">
+          <label for="sessionId" class="sr-only">Session ID</label>
+          <input
+            type="text"
+            class="config-input"
+            id="sessionId"
+            placeholder="Session ID do Social Stream Ninja"
+            aria-label="Session ID"
+            spellcheck="false"
+          />
+        </div>
+        <button class="control-btn connect-btn" id="connectBtn">
+          <span class="btn-icon">🔌</span>
+          <span class="btn-text">Conectar</span>
+        </button>
+      </div>
+      
+      <div class="config-section">
+        <h3 class="config-title">🔊 Configurações de Áudio</h3>
+        <div id="sound-controls">
+          <label>
+            <input type="checkbox" id="beep-toggle" checked>
+            Ativar beep <br>
+          </label>
+          <div class="volume-control">
+            <label>
+              Volume:
+              <input type="number" id="beep-volume" min="0" max="100" value="100">
+              <span id="volume-value">%</span>
+            </label>
+          </div>
+          </div>
+      </div>
+    </aside>
+  </div>
+  
+  <audio id="message-sound" src="src/beep.mp3" preload="auto"></audio>
+
+  <script src="src/main.js" type="module"></script>
+</body>
+</html>
