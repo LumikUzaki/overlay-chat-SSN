@@ -77,6 +77,36 @@ StreamChat Overlay/
 
 ---
 
+## 📌 Overlay Chat Comparison
+
+Essa imagem mostra três tipos de **overlay de chat** usados em transmissões ao vivo ou jogos:
+
+![Overlay Chat Comparison](assets/overlay-comparison.png)
+
+
+### 1. **API Overlay Chat** (esquerda)
+- Usa integração via **API/Web** (no exemplo, Social Stream Ninja).  
+- Permite copiar um link (`dock.html`) e customizar temas de overlay.  
+- Configurações extras: dock, menu, TTS, visibilidade e estilização.  
+
+### 2. **Render Overlay Chat** (meio)
+- Mostra o chat sendo **renderizado diretamente** pelo software.  
+- Exibe mensagens em tempo real com ícones de plataformas (ex.: YouTube).  
+- Interface parecida com um painel de dashboard, mas visível em overlay.  
+
+### 3. **Custom Overlay Chat** (direita)
+- Overlay **personalizado** feito pelo usuário.  
+- Opções de fixar, deixar transparente e estilizar mensagens.  
+- Design mais moderno, com avatar, nome, mensagem e ícones das plataformas.  
+
+---
+
+📷 **Resumo da Imagem:**  
+A tela ilustra a diferença entre usar um **overlay padrão via API**, um **overlay renderizado pelo app** e um **overlay customizado**, todos aplicados em jogos ou transmissões, para melhorar a interação do chat na tela.
+
+
+---
+
 ## 📄 License / Licença
 
 MIT
