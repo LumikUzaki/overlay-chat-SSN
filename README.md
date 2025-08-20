@@ -81,7 +81,7 @@ StreamChat Overlay/
 
 Essa imagem mostra três tipos de **overlay de chat** usados em transmissões ao vivo ou jogos:
 
-![Overlay Chat Comparison](assets/overlay-comparison.png)
+![Overlay Chat Comparison](overlay-comparison.png)
 
 
 ### 1. **API Overlay Chat** (esquerda)
